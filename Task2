@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+void convert_temperature(double temperature, char input_scale, char output_scale) {
+    double converted_temperature;
+
+    // Convert input temperature to Celsius
+    if (input_scale == 'C') {
+        converted_temperature = temperature;
+    } else if (input_scale == 'F') {
+        converted_temperature = (temperature - 32) * 5.0 / 9.0;
+    } else if (input_scale == 'K') {
+        converted_temperature = temperature - 273.15;
+    } else {
+        printf("Invalid input scale\n");
+        return;
+    }
+
+    // Convert Celsius to output scale
+    if (output_scale == 'C') {
+        // Already in Celsius
+        printf("Temperature: %.2f °C\n", converted_temperature);
+    } else if (output_scale == 'F') {
+        converted_temperature = (converted_temperature * 9.0 / 5.0) + 32;
+        printf("Temperature: %.2f °F\n", converted_temperature);
+    } else if (output_scale == 'K') {
+        converted_temperature += 273.15;
+        printf("Temperature: %.2f K\n", converted_temperature);
+    } else {
+        printf("Invalid output scale\n");
+    }
+}
+
+int main() {
+    double temperature;
+    char input_scale, output_scale;
+
+    // Get user input
+    printf("Enter temperature: ");
+    scanf("%lf", &temperature);
+    printf("Enter input scale (C/F/K): ");
+    scanf(" %c", &input_scale);
+    printf("Enter output scale (C/F/K): ");
+    scanf(" %c", &output_scale);
+
+    // Convert and display the result
+    convert_temperature(temperature, input_scale, output_scale);
+
+    return 0;
+}
